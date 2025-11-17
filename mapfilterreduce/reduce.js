@@ -4,7 +4,7 @@ const res = arr.reduce((acc, curr, i, arr) => {
   acc += curr;
   return acc;
 }, 0);
-
+//test
 console.log(res);
 
 //arr.reduce((acc,curr,i,arr)=>{},initialvalue)
