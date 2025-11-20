@@ -113,3 +113,95 @@ f2();
 // When runs	Registers callback → executes later as microtask	Pauses the async function, resumes later as microtask
 // Flow control	Doesn’t pause the function — code continues after .then() immediately	Pauses the async function at await until promise settles
 // Effect	The rest of the code in the same function keeps running immediately	The rest of the async function waits for the promise
+
+
+
+
+//params vs arguments
+
+function paramsarguments(p,q){ //params
+
+}
+
+paramsarguments(1,2) //arguments
+
+//spread
+const arr=[1,2,3,4]
+const arr1=[5,6,7,8]
+
+
+const spread=[...arr,...arr1,90,99,100]
+
+console.log(spread)
+
+
+//function calls expands a iteratable value into i9ndividual
+
+function  iteratable(a,b,c){
+    console.log(a,b,c)
+}
+
+const a1=[1,2,3]
+iteratable(...a1)
+
+
+//rest operator pack the values
+
+function pack(...pack){
+    console.log(pack)
+}
+pack("8","test","data")
+
+//callback function- function passed as an argument to another function is called as call back function
+
+function cb1(num){
+    console.log("hello" + "",num)
+}
+
+function main(cb1){
+    cb1("praveen")
+}
+
+main(cb1)
+
+//difference between normal function and arrow function
+
+
+//syntax
+
+function normal(){
+
+}
+const arrow=()=>{
+
+}
+
+//implicit return keyword
+
+const implicit=()=> console.log("implicit")
+
+
+//own arguments
+function ownArguments(){
+    console.log(arguments)
+}
+ownArguments(1,3,4)
+
+
+const ownArrowArguments=()=>{
+    console.log(arguments)
+}
+
+//ownArrowArguments(2,3,4,5)
+
+const obj={
+    name:"praveen",
+    r1:()=>{
+        console.log("hi"+"",this.name)
+    },
+    r2(){
+console.log("hello"+"",this.name)
+    }
+}
+obj.r1()
+obj.r2()
