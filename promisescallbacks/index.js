@@ -103,7 +103,7 @@ const testPromise2 = new Promise((resolve, reject) => {
 Promise.all([testPromise, testPromise1, testPromise2]).then((data) => {
     console.log(data)
 })
-//thjs also take the array of promises and return first successful result or failure
+//this also take the array of promises and return first successful result or failure
 Promise.race([testPromise, testPromise1, testPromise2]).then((data) => {
     console.log(data)
 })
@@ -118,19 +118,80 @@ Promise.any([testPromise, testPromise1, testPromise2])
 
 //async
 
-const haldleasyncawait=async()=>{
+const haldleasyncawait = async () => {
 
- try{
-   const message=await testPromise
-    const message1=await testPromise1
-    const message2=await testPromise2
+    try {
+        const message = await testPromise
+        const message1 = await testPromise1
+        const message2 = await testPromise2
 
-    console.log("async await function",message,message1,message2)
- }catch(error){
-    console.log(error)
- }
+        console.log("async await function", message, message1, message2)
+    } catch (error) {
+        console.log(error)
+    }
 
 
 }
 
 haldleasyncawait()
+
+//what's the output
+console.log("start")
+
+const promiseex = new Promise((resolve, reject) => {
+    console.log(1)
+    resolve(2)
+})
+
+promiseex.then((data) => {
+    console.log(data)
+})
+
+console.log("end")
+//output
+//start => 1 =>end => 2
+
+
+//if there is no resolve inside your promise your promise won't go to the .then code block
+
+//array of promises
+
+function firstPromise(f) {
+    return new Promise((resolve, reject) => {
+        resolve(console.log("first value", f))
+    })
+}
+
+function secondPromise(s) {
+    return new Promise((resolve, reject) => {
+        resolve(console.log("second value", s))
+    })
+}
+
+
+function thirdPromise(t) {
+    return new Promise((resolve, reject) => {
+        resolve(console.log("third value", t))
+    })
+}
+
+function promRecurse(functionPromise){
+    if(functionPromise.length===0){
+        return 
+    }
+
+    const currentPromise=functionPromise.shift()
+
+
+    currentPromise.then((data)=>{
+        console.log(data)
+    }).catch((error)=>{
+        console.log(error)
+    })
+    promRecurse(functionPromise)
+
+}
+
+promRecurse([firstPromise(11), secondPromise(12), thirdPromise(13)])
+
+//promise polyfill  
