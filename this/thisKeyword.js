@@ -38,6 +38,17 @@ user.getDetails()
 // So this → global object (or undefined in strict mode)
 
 // So:
+// Why this matters
+
+// 👉 Arrow function captures this at creation time, not based on where it's placed.
+
+// So:
+
+// It is written inside the object
+// But it is created in the outer scope
+
+// Objects do NOT create a new this scope
+// Only functions create this binding
 const arrouser={
     name:"praveen",
     getdat:()=>{
@@ -121,3 +132,20 @@ const windowuser={
 }
 
 setTimeout(windowuser.logmessage,1000)
+
+const obj = {
+  name: "Omkar",
+  show: function() {
+    const arrow = () => {
+      console.log(this.name); // ✅ Omkar
+    };
+    arrow();
+  }
+};
+
+// show() → normal function → this = obj
+// arrow → captures this from show()
+// 🎯 Final One-Line Rule
+
+// 👉 Arrow function inside object ≠ object this
+// 👉 Arrow function inside function = inherits that function’s this
